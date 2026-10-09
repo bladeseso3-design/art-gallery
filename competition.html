@@ -185,6 +185,51 @@
 
 </main>
 
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const response = await fetch("/api/artworks");
+
+        if (!response.ok) {
+            throw new Error("Could not load competition artwork.");
+        }
+
+        const data = await response.json();
+        const artworks = data.artworks;
+
+        const cards = document.querySelectorAll(
+            "#competition-entries .art-card"
+        );
+
+        cards.forEach((card) => {
+            const titleElement = card.querySelector("h3");
+            const title = titleElement?.textContent.trim();
+
+            const artwork = artworks.find((item) =>
+                item.title.toLowerCase() === title.toLowerCase()
+            );
+
+            if (!artwork) {
+                return;
+            }
+
+            let voteCount = card.querySelector(".vote-count");
+
+            if (!voteCount) {
+                voteCount = document.createElement("p");
+                voteCount.className = "vote-count";
+                voteCount.setAttribute("aria-live", "polite");
+                card.appendChild(voteCount);
+            }
+
+            voteCount.textContent = `Current votes: ${artwork.votes}`;
+        });
+    } catch (error) {
+        console.error("Competition data error:", error);
+    }
+});
+</script>
+
 <footer class="site-footer">
     <a href="./index.html" class="logo">
         <span class="logo-text">ART GALLERY</span>

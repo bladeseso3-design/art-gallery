@@ -1,0 +1,19 @@
+# Installed Node.js packages
+
+backend/node_modules/
+
+# Local SQLite database
+
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+
+# Environment variables and secrets
+
+.env
+.env.*
+!.env.example
+
+# Debug logs
+
+npm-debug.log*
