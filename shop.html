@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Art Shop | Art Gallery</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/shop.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <span class="logo-mark">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <span class="logo-text">ART GALLERY</span>
+    </div>
+
+    <nav>
+        <a href="./index.html#collection">Collection</a>
+        <a href="./index.html#exhibitions">Exhibitions</a>
+        <a href="./index.html#artists">Artists</a>
+        <a href="./competition.html">Competition</a>
+        <a href="./shop.html" aria-current="page">Shop</a>
+        <a href="./index.html#about">About</a>
+        <a href="./contact.html">Contact</a>
+    </nav>
+</header>
+
+<main class="shop-main">
+
+    <section class="shop-intro">
+        <p class="eyebrow">THE ART GALLERY SHOP · 2026</p>
+
+        <h1>Art worth<br>living with.</h1>
+
+        <p class="description">
+            Discover original artworks from the artists represented
+            by Art Gallery. Explore available works and find a piece
+            that speaks to you.
+        </p>
+    </section>
+
+    <section class="shop-catalogue">
+
+        <div class="shop-heading">
+            <div>
+                <p class="eyebrow">AVAILABLE WORKS</p>
+                <h2>Explore the collection</h2>
+            </div>
+
+            <p id="shop-count" aria-live="polite">
+                Loading artworks...
+            </p>
+        </div>
+
+        <p id="shop-message" class="shop-message" role="status"
+           aria-live="polite">
+            Loading available artworks...
+        </p>
+
+        <div id="shop-products" class="shop-products">
+            <!-- Products are loaded from the backend. -->
+        </div>
+
+    </section>
+
+    <section class="shop-information">
+        <p class="eyebrow">PURCHASE INFORMATION</p>
+        <h2>Every artwork has a story.</h2>
+
+        <p>
+            Orders are subject to availability. Customers must sign
+            in with a verified account before placing an order.
+            Payment instructions are provided after an order is created.
+        </p>
+
+        <a href="./contact.html">Questions? Contact the gallery →</a>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Art Gallery</p>
+</footer>
+
+<script src="./js/shop.js" defer></script>
+
+</body>
+</html>

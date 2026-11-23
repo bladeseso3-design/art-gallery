@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in or create an Art Gallery account.">
+    <title>Account | Art Gallery</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/auth.css">
+    <script src="./js/auth.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+    <a class="logo" href="./index.html" aria-label="Art Gallery home">
+        <span class="logo-mark">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <span class="logo-text">ART GALLERY</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+        <a href="./index.html#collection">Collection</a>
+        <a href="./competition.html">Competition</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./contact.html">Contact</a>
+    </nav>
+</header>
+
+<main class="auth-main">
+    <section class="auth-intro">
+        <p class="eyebrow">ART GALLERY · YOUR ACCOUNT</p>
+        <h1>A place for<br>art lovers.</h1>
+        <p>
+            Sign in to continue to the gallery shop, or create an
+            account to begin collecting original artwork.
+        </p>
+    </section>
+
+    <section class="auth-panel" aria-label="Account access">
+
+        <div class="auth-tabs" role="tablist" aria-label="Account options">
+            <button
+                type="button"
+                class="auth-tab active"
+                id="login-tab"
+                role="tab"
+                aria-selected="true"
+                aria-controls="login-panel">
+                Sign in
+            </button>
+
+            <button
+                type="button"
+                class="auth-tab"
+                id="register-tab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="register-panel">
+                Create account
+            </button>
+        </div>
+
+        <div id="auth-message" class="auth-message"
+             role="status" aria-live="polite"></div>
+
+        <section id="login-panel" class="auth-form-panel"
+                 role="tabpanel" aria-labelledby="login-tab">
+
+            <h2>Welcome back.</h2>
+            <p>Sign in with your verified email address.</p>
+
+            <form id="login-form" class="auth-form">
+                <label for="login-email">Email address</label>
+                <input
+                    type="email"
+                    id="login-email"
+                    name="email"
+                    autocomplete="email"
+                    maxlength="254"
+                    required>
+
+                <label for="login-password">Password</label>
+                <input
+                    type="password"
+                    id="login-password"
+                    name="password"
+                    autocomplete="current-password"
+                    maxlength="1024"
+                    required>
+
+                <button type="submit" class="auth-submit">
+                    Sign in
+                </button>
+            </form>
+        </section>
+
+        <section id="register-panel" class="auth-form-panel"
+                 role="tabpanel" aria-labelledby="register-tab"
+                 hidden>
+
+            <h2>Join the gallery.</h2>
+            <p>Create an account to place artwork orders.</p>
+
+            <form id="register-form" class="auth-form">
+                <label for="register-email">Email address</label>
+                <input
+                    type="email"
+                    id="register-email"
+                    name="email"
+                    autocomplete="email"
+                    maxlength="254"
+                    required>
+
+                <label for="register-password">Create password</label>
+                <input
+                    type="password"
+                    id="register-password"
+                    name="password"
+                    autocomplete="new-password"
+                    minlength="12"
+                    maxlength="1024"
+                    required>
+
+                <p class="auth-hint">
+                    Use at least 12 characters. You must verify
+                    your email before signing in.
+                </p>
+
+                <button type="submit" class="auth-submit">
+                    Create account
+                </button>
+            </form>
+        </section>
+
+        <p class="auth-footer">
+            <a href="./shop.html">Return to the gallery shop</a>
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 Art Gallery</p>
+</footer>
+
+</body>
+</html>

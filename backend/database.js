@@ -49,6 +49,83 @@ db.exec(`
     );
 `);
 
+/*
+ * Safely extend competitions for monthly competition management.
+ * Existing competition records and voting history are preserved.
+ */
+const existingCompetitionColumns = db
+    .prepare("PRAGMA table_info(competitions)")
+    .all()
+    .map(column => column.name);
+
+if (!existingCompetitionColumns.includes("description")) {
+    db.exec(`
+        ALTER TABLE competitions
+        ADD COLUMN description TEXT NOT NULL DEFAULT ''
+    `);
+}
+
+if (!existingCompetitionColumns.includes("start_at")) {
+    db.exec(`
+        ALTER TABLE competitions
+        ADD COLUMN start_at TEXT
+    `);
+}
+
+if (!existingCompetitionColumns.includes("end_at")) {
+    db.exec(`
+        ALTER TABLE competitions
+        ADD COLUMN end_at TEXT
+    `);
+}
+
+if (!existingCompetitionColumns.includes("updated_at")) {
+    db.exec(`
+        ALTER TABLE competitions
+        ADD COLUMN updated_at TEXT
+    `);
+}
+
+if (!existingCompetitionColumns.includes("published_at")) {
+    db.exec(`
+        ALTER TABLE competitions
+        ADD COLUMN published_at TEXT
+    `);
+}
+
+if (!existingCompetitionColumns.includes("archived_at")) {
+    db.exec(`
+        ALTER TABLE competitions
+        ADD COLUMN archived_at TEXT
+    `);
+}
+
+
+/*
+ * Store the artworks selected for each competition.
+ * An artwork can participate in multiple competitions.
+ */
+db.exec(`
+    CREATE TABLE IF NOT EXISTS competition_artworks (
+        competition_id INTEGER NOT NULL,
+        artwork_id INTEGER NOT NULL,
+        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+        PRIMARY KEY (competition_id, artwork_id),
+
+        FOREIGN KEY (competition_id)
+            REFERENCES competitions(id),
+
+        FOREIGN KEY (artwork_id)
+            REFERENCES artworks(id)
+    );
+
+    CREATE INDEX IF NOT EXISTS
+        idx_competition_artworks_artwork
+    ON competition_artworks(artwork_id);
+`);
+
+
 // Insert initial artworks only if their IDs do not already exist.
 const insertArtwork = db.prepare(`
     INSERT OR IGNORE INTO artworks (id, title, artist, year, votes)
@@ -91,6 +168,14 @@ if (!existingUserColumns.includes("email_verification_expires_at")) {
     `);
 }
 
+// Add account roles safely for existing and future users.
+if (!existingUserColumns.includes("role")) {
+    db.exec(`
+        ALTER TABLE users
+        ADD COLUMN role TEXT NOT NULL DEFAULT 'user'
+        CHECK (role IN ('user', 'admin'))
+    `);
+}
 addInitialArtworks();
 
 // Create the initial competition as closed.

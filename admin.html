@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Art Gallery</title>
+
+    <link rel="stylesheet" href="./css/admin.css">
+</head>
+
+<body>
+    <div class="admin-layout">
+
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-name">ART GALLERY</span>
+                <span class="brand-label">ADMINISTRATION</span>
+            </div>
+
+            <nav class="sidebar-navigation">
+                <p class="nav-heading">WORKSPACE</p>
+
+                <a href="#dashboard" class="nav-link active">
+                    Dashboard
+                </a>
+
+                <p class="nav-heading">MANAGEMENT</p>
+
+                <a href="#users" class="nav-link">
+                    Users
+                </a>
+
+                <a href="#artworks" class="nav-link">
+                    Artworks
+                </a>
+
+                <a href="#competitions" class="nav-link">
+                    Competitions
+                </a>
+
+                <a href="#orders" class="nav-link">
+                    Shop Orders
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span>Administrator</span>
+                <button id="logoutButton" class="logout-button">
+                    Sign Out
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main workspace -->
+        <main class="admin-main">
+
+            <header class="admin-header">
+                <div>
+                    <p class="header-eyebrow">ADMINISTRATION</p>
+                    <h1>Dashboard</h1>
+                    <p class="header-description">
+                        Overview of your art gallery platform.
+                    </p>
+                </div>
+
+                <div class="admin-account">
+                    <span class="account-label">SIGNED IN AS</span>
+                    <strong id="adminEmail">Checking access...</strong>
+                </div>
+            </header>
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="section-eyebrow">OVERVIEW</p>
+                        <h2>Platform Statistics</h2>
+                    </div>
+
+                    <span id="dashboardStatus" class="status-label">
+                        Loading data...
+                    </span>
+                </div>
+
+                <div id="statsGrid" class="stats-grid">
+
+                    <article class="stat-card">
+                        <span class="stat-label">Total Users</span>
+                        <strong id="totalUsers">—</strong>
+                        <span id="verifiedUsers" class="stat-detail">
+                            Loading verification data
+                        </span>
+                    </article>
+
+                    <article class="stat-card">
+                        <span class="stat-label">Artworks</span>
+                        <strong id="totalArtworks">—</strong>
+                        <span class="stat-detail">Registered artworks</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <span class="stat-label">Competitions</span>
+                        <strong id="totalCompetitions">—</strong>
+                        <span id="competitionDetails" class="stat-detail">
+                            Loading competition data
+                        </span>
+                    </article>
+
+                    <article class="stat-card">
+                        <span class="stat-label">Total Votes</span>
+                        <strong id="totalVotes">—</strong>
+                        <span class="stat-detail">Recorded votes</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <span class="stat-label">Shop Orders</span>
+                        <strong id="totalOrders">—</strong>
+                        <span id="pendingOrders" class="stat-detail">
+                            Loading order data
+                        </span>
+                    </article>
+
+                </div>
+
+                <div class="dashboard-bottom">
+
+                    <section class="information-panel">
+                        <p class="section-eyebrow">SYSTEM</p>
+                        <h2>Platform Overview</h2>
+
+                        <p>
+                            This dashboard displays information retrieved
+                            directly from the gallery database.
+                        </p>
+
+                        <p id="systemMessage" class="system-message">
+                            Checking administrator access and database status.
+                        </p>
+                    </section>
+
+                    <section class="information-panel">
+                        <p class="section-eyebrow">ADMINISTRATION</p>
+                        <h2>Management Centre</h2>
+
+                        <p>
+                            User, artwork, competition and order management
+                            will be connected to protected administrative
+                            services as those features are implemented.
+                        </p>
+                    </section>
+
+                </div>
+
+            </section>
+
+            <!-- User Management -->
+            <section id="users" class="management-section" hidden>
+
+                <div class="section-heading">
+                    <div>
+                        <p class="section-eyebrow">MANAGEMENT</p>
+                        <h2>Registered Users</h2>
+                        <p class="header-description">
+                            View and monitor gallery account registrations.
+                        </p>
+                    </div>
+
+                    <button id="refreshUsers" class="action-button">
+                        Refresh Users
+                    </button>
+                </div>
+
+                <div class="users-toolbar">
+                    <input
+                        type="search"
+                        id="userSearch"
+                        placeholder="Search by email or account ID..."
+                        aria-label="Search registered users"
+                    >
+
+                    <span id="userCount" class="status-label">
+                        Loading users...
+                    </span>
+                </div>
+
+                <div id="usersMessage" class="users-message">
+                    Loading registered accounts...
+                </div>
+
+                <div class="table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Account ID</th>
+                                <th>Email Address</th>
+                                <th>Verification</th>
+                                <th>Role</th>
+                                <th>Registration Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="usersTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+
+            <!-- Artwork Management -->
+            <section id="artworks" class="management-section" hidden>
+
+                <div class="section-heading">
+                    <div>
+                        <p class="section-eyebrow">MANAGEMENT</p>
+                        <h2>Artwork Collection</h2>
+                        <p class="header-description">
+                            View and manage registered gallery artworks.
+                        </p>
+                    </div>
+
+                    <button id="refreshArtworks" class="action-button">
+                        Refresh Artworks
+                    </button>
+                </div>
+
+                <div class="users-toolbar">
+                    <input
+                        type="search"
+                        id="artworkSearch"
+                        placeholder="Search by title, artist or ID..."
+                        aria-label="Search artworks"
+                    >
+
+                    <span id="artworkCount" class="status-label">
+                        Loading artworks...
+                    </span>
+                </div>
+
+                <div id="artworksMessage" class="users-message">
+                    Artwork records will appear here.
+                </div>
+
+                <div class="table-container">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Artwork Title</th>
+                                <th>Artist</th>
+                                <th>Year</th>
+                                <th>Votes</th>
+                                <th>Shop Price</th>
+                                <th>Stock Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="artworksTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Monthly Competition Management -->
+            <section id="competitions" class="management-section" hidden>
+
+                <div class="section-heading">
+                    <div>
+                        <p class="section-eyebrow">MANAGEMENT</p>
+                        <h2>Competition Management</h2>
+                        <p class="header-description">
+                            Create monthly competitions, select artworks,
+                            publish voting periods and manage results.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="refreshCompetitions"
+                        class="action-button"
+                    >
+                        Refresh Competitions
+                    </button>
+                </div>
+
+                <!-- Create Competition -->
+                <div class="information-panel competition-create-panel">
+                    <h2>Create a Monthly Competition</h2>
+
+                    <form id="competitionCreateForm" class="competition-form">
+
+                        <label for="competitionName">
+                            Competition Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="competitionName"
+                            maxlength="150"
+                            placeholder="Example: December Art Competition"
+                            required
+                        >
+
+                        <label for="competitionDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="competitionDescription"
+                            maxlength="2000"
+                            rows="4"
+                            placeholder="Describe this month's competition..."
+                        ></textarea>
+
+                        <div class="competition-date-grid">
+
+                            <div>
+                                <label for="competitionStart">
+                                    Voting Start Date and Time
+                                </label>
+
+                                <input
+                                    type="datetime-local"
+                                    id="competitionStart"
+                                    required
+                                >
+                            </div>
+
+                            <div>
+                                <label for="competitionEnd">
+                                    Voting End Date and Time
+                                </label>
+
+                                <input
+                                    type="datetime-local"
+                                    id="competitionEnd"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+                            <button
+                                type="submit"
+                                class="action-button"
+                                id="createCompetitionButton"
+                            >
+                                Create Competition
+                            </button>
+                        </div>
+
+                        <p
+                            id="competitionCreateMessage"
+                            class="users-message"
+                            aria-live="polite"
+                        ></p>
+
+                    </form>
+                </div>
+
+                <!-- Competition List -->
+                <div class="competition-list-panel">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Monthly Competitions</h2>
+                            <p class="header-description">
+                                Review drafts, scheduled competitions,
+                                active voting and completed competitions.
+                            </p>
+                        </div>
+
+                        <span
+                            id="competitionCount"
+                            class="status-label"
+                        >
+                            Loading competitions...
+                        </span>
+                    </div>
+
+                    <p
+                        id="competitionsMessage"
+                        class="users-message"
+                        aria-live="polite"
+                    >
+                        Competition records will appear here.
+                    </p>
+
+                    <div class="table-container">
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Competition</th>
+                                    <th>Voting Period</th>
+                                    <th>Artworks</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="competitionsTableBody"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!-- Artwork Selection -->
+                <div
+                    id="competitionArtworkPanel"
+                    class="information-panel competition-artwork-panel"
+                    hidden
+                >
+
+                    <div class="section-heading">
+                        <div>
+                            <p class="section-eyebrow">
+                                COMPETITION SETUP
+                            </p>
+
+                            <h2 id="competitionArtworkHeading">
+                                Select Competition Artworks
+                            </h2>
+
+                            <p id="competitionArtworkDescription">
+                                Choose the artworks that will participate.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p
+                        id="competitionArtworkMessage"
+                        class="users-message"
+                        aria-live="polite"
+                    ></p>
+
+                    <div
+                        id="competitionArtworkChoices"
+                        class="competition-artwork-choices"
+                    ></div>
+
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            id="saveCompetitionArtworks"
+                            class="action-button"
+                        >
+                            Save Selected Artworks
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelCompetitionArtwork"
+                            class="action-button"
+                        >
+                            Close Selection
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- Competition Results -->
+                <div
+                    id="competitionResultsPanel"
+                    class="information-panel competition-results-panel"
+                    hidden
+                >
+
+                    <div class="section-heading">
+                        <div>
+                            <p class="section-eyebrow">
+                                COMPETITION RESULTS
+                            </p>
+
+                            <h2 id="competitionResultsHeading">
+                                Competition Results
+                            </h2>
+                        </div>
+                    </div>
+
+                    <p
+                        id="competitionResultsMessage"
+                        class="users-message"
+                        aria-live="polite"
+                    ></p>
+
+                    <div class="table-container">
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Artwork</th>
+                                    <th>Artist</th>
+                                    <th>Votes</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="competitionResultsTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="closeCompetitionResults"
+                        class="action-button"
+                    >
+                        Close Results
+                    </button>
+
+                </div>
+
+            </section>
+
+            
+<!-- Artwork Editing Form -->
+            <section id="artworkEditSection" class="management-section" hidden>
+
+                <div class="section-heading">
+                    <div>
+                        <p class="section-eyebrow">ARTWORK MANAGEMENT</p>
+                        <h2>Edit Artwork</h2>
+                        <p class="header-description">
+                            Update the selected artwork's information.
+                        </p>
+                    </div>
+                </div>
+
+                <form id="artworkEditForm" class="artwork-edit-form">
+
+                    <input type="hidden" id="editArtworkId">
+
+                    <label for="editArtworkTitle">Artwork Title</label>
+                    <input
+                        type="text"
+                        id="editArtworkTitle"
+                        maxlength="150"
+                        required
+                    >
+
+                    <label for="editArtworkArtist">Artist Name</label>
+                    <input
+                        type="text"
+                        id="editArtworkArtist"
+                        maxlength="100"
+                        required
+                    >
+
+                    <label for="editArtworkYear">Year</label>
+                    <input
+                        type="number"
+                        id="editArtworkYear"
+                        min="1000"
+                        max="9999"
+                        step="1"
+                        required
+                    >
+
+                    <div class="form-actions">
+                        <button type="submit" class="action-button">
+                            Save Changes
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelArtworkEdit"
+                            class="action-button"
+                        >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <p id="artworkEditMessage" class="users-message"></p>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="./js/admin.js"></script>
+</body>
+</html>

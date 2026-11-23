@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your artwork and complete your Art Gallery order.">
+    <title>Checkout | Art Gallery</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/checkout.css">
+    <script src="./js/checkout.js" defer></script>
+</head>
+<body>
+
+<header class="site-header">
+    <a class="logo" href="./index.html" aria-label="Art Gallery home">
+        <span class="logo-mark">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <span class="logo-text">ART GALLERY</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+        <a href="./index.html#collection">Collection</a>
+        <a href="./competition.html">Competition</a>
+        <a href="./shop.html">Shop</a>
+        <a href="./contact.html">Contact</a>
+    </nav>
+</header>
+
+<main class="checkout-main">
+
+    <section class="checkout-heading">
+        <p class="eyebrow">ART GALLERY · SECURE CHECKOUT</p>
+        <h1>Complete your order.</h1>
+        <p>Review your selected artwork and provide your fulfilment details.</p>
+    </section>
+
+    <div id="checkout-message"
+         class="checkout-message"
+         role="status"
+         aria-live="polite"></div>
+
+    <div class="checkout-layout">
+
+        <section class="checkout-product-section"
+                 aria-labelledby="checkout-product-heading">
+
+            <h2 id="checkout-product-heading">Your artwork</h2>
+
+            <div id="checkout-product" class="checkout-product">
+                <p>Loading selected artwork...</p>
+            </div>
+
+            <a class="checkout-back-link" href="./shop.html">
+                ← Return to shop
+            </a>
+        </section>
+
+        <section class="checkout-form-section"
+                 aria-labelledby="checkout-form-heading">
+
+            <h2 id="checkout-form-heading">Fulfilment details</h2>
+
+            <form id="checkout-form" class="checkout-form">
+
+                <label for="customer-name">Full name</label>
+                <input
+                    type="text"
+                    id="customer-name"
+                    name="customerName"
+                    maxlength="120"
+                    autocomplete="name"
+                    required>
+
+                <label for="fulfilment-method">How would you like to receive your artwork?</label>
+                <select
+                    id="fulfilment-method"
+                    name="fulfilmentMethod"
+                    required>
+                    <option value="">Choose fulfilment method</option>
+                    <option value="collection">Collection</option>
+                    <option value="delivery">Delivery</option>
+                </select>
+
+                <div id="delivery-address-group" hidden>
+                    <label for="delivery-address">Delivery address</label>
+                    <textarea
+                        id="delivery-address"
+                        name="deliveryAddress"
+                        rows="4"
+                        maxlength="500"
+                        autocomplete="street-address"
+                        placeholder="Enter your delivery address"></textarea>
+                </div>
+
+                <div class="checkout-payment-note">
+                    <h3>Choose your payment method</h3>
+
+                    <div class="checkout-payment-options">
+                        <label class="checkout-payment-option">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="modem"
+                                checked
+                                required>
+                            <span>
+                                <strong>Modem Pay</strong>
+                                <small>Pay online using an available payment channel.</small>
+                            </span>
+                        </label>
+
+                        <label class="checkout-payment-option">
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="wave">
+                            <span>
+                                <strong>Manual Wave</strong>
+                                <small>Pay directly using the gallery's Wave number and order reference.</small>
+                            </span>
+                        </label>
+                    </div>
+
+                    <p>
+                        Your order remains pending until the gallery
+                        verifies your payment.
+                    </p>
+                </div>
+
+                <button
+                    type="submit"
+                    id="place-order-button"
+                    class="checkout-submit"
+                    disabled>
+                    Place order
+                </button>
+
+                <p class="checkout-small-note">
+                    Submitting an order reserves the selected artwork
+                    for up to 30 minutes while payment is pending.
+                </p>
+
+            </form>
+        </section>
+    </div>
+
+    <section id="checkout-confirmation"
+             class="checkout-confirmation"
+             aria-live="polite"
+             hidden>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 Art Gallery</p>
+</footer>
+
+</body>
+</html>
